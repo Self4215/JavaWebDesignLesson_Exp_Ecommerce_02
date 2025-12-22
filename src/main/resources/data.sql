@@ -1,6 +1,6 @@
 -- 初始化测试用户（密码是 123456，已用 BCrypt 加密）
 INSERT INTO users (username, password, full_name)
-VALUES ('testuser', '$2a$10$8H9w5f8G7y6D4s3a2q1z0b9n8m7l6k5j4h3g2f1d0s9a8s7d6f5g4h3j2k1l0', '测试用户');
+VALUES ('testuser', '$2a$10$UEwMZTMQo1wVipiTsPrCFevVjblJUmlZd5Ud69utZEokMIi/IcWxu', '测试用户');
 
 -- 初始化商品数据
 INSERT INTO products (name, description, price, image_url)

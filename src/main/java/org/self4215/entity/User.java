@@ -1,6 +1,8 @@
 package org.self4215.entity;
 
 import lombok.Data;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -22,5 +24,6 @@ public class User {
 
     // 关联购物车（一个用户对应多个购物车项）
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @ToString.Exclude // 【新增】防止 toString 死循环
     private Set<CartItem> cartItems;
 }

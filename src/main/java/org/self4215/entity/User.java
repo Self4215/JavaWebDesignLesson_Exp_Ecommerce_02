@@ -20,6 +20,9 @@ public class User {
     @Column(nullable = false)
     private String password; // 密码（Spring Security 会加密）
 
+    @Transient // 不持久化到数据库
+    private String confirmPassword; // 确认密码
+
     private String fullName; // 昵称
 
     // 关联购物车（一个用户对应多个购物车项）

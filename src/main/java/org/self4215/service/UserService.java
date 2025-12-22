@@ -41,6 +41,14 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("用户不存在"));
     }
 
+    // 注册新用户
+    public void registerUser(User user) {
+        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+            throw new RuntimeException("用户名已存在");
+        }
+        saveUser(user);
+    }
+
     // 保存用户（初始化测试用户用）
     public User saveUser(User user) {
         // 密码加密（Spring Security 要求密码必须加密）

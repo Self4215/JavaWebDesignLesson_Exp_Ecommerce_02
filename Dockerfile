@@ -9,11 +9,11 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # 阶段2：运行 Jar 包
-FROM openjdk:8-jdk-alpine
+FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/library/openjdk:8-alpine
 # 设置工作目录
 WORKDIR /app
 # 从构建阶段复制 Jar 包到当前镜像
-COPY --from=build /app/target/ecommerce-1.1.20251221.01.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 # 暴露端口（与 application.properties 中的 server.port 一致）
 EXPOSE 8080
 # 启动命令

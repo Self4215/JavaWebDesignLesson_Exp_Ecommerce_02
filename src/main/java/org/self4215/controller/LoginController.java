@@ -34,6 +34,9 @@ public class LoginController {
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") User user, Model model) {
         try {
+            if (!user.getPassword().equals(user.getConfirmPassword())) {
+                throw new RuntimeException("两次输入的密码不一致");
+            }
             userService.registerUser(user);
             return "redirect:/login?registerSuccess";
         } catch (RuntimeException e) {

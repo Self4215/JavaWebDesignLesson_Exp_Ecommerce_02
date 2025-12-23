@@ -1,5 +1,9 @@
 name: Create and publish a Docker image
 
+run-name: >-
+  ${{ github.event_name == 'workflow_dispatch' && 'Manual Build' || 'Tag Release' }}: 
+  ${{ inputs.tag_name || github.ref_name }}
+
 on:
   push:
     tags: ['*']

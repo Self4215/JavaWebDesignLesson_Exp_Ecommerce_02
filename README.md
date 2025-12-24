@@ -65,3 +65,9 @@ docker-compose up -d
 4. **访问项目**
 
    等待服务启动完成后，访问地址：`http://localhost:8080`
+
+---
+
+## 许可证
+
+本项目采用 [MIT 许可证](LICENSE)。

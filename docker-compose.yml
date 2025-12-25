@@ -8,9 +8,9 @@ services:
     restart: always
     environment:
       # 数据库根密码
-      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       # 自动创建数据库
-      MYSQL_DATABASE: ecommerce_db
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
       # 字符集配置
       MYSQL_CHARACTER_SET_SERVER: utf8mb4
       MYSQL_COLLATION_SERVER: utf8mb4_unicode_ci
@@ -29,6 +29,10 @@ services:
     restart: always
     ports:
       - "8080:8080"
+    environment:
+      - DB_HOST=mysql
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
     # 依赖 MySQL 服务，确保先启动 MySQL
     depends_on:
       - mysql

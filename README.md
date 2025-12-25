@@ -17,7 +17,28 @@ docker pull ghcr.io/self4215/javawebdesignlesson_exp_ecommerce_02:latest
 
 2. **创建配置文件**
 
-   在任意目录下创建一个名为 `docker-compose.yml` 的文件，并填入以下内容：
+(1) **创建 `.env` 文件**
+
+   为了安全起见，我们将敏感配置放入环境变量中。
+
+   在任意目录下创建一个名为 `.env` 的文件，并填入以下内容（或者参考源码内的 [`.env.example`](.env.example) 文件）：
+```dotenv
+# 务必在生产环境中修改以下密码
+
+# Database Configuration
+MYSQL_DATABASE=ecommerce_db
+MYSQL_ROOT_PASSWORD=your_secure_password
+
+# Application Database Connection
+DB_HOST=mysql
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=your_secure_password
+```
+
+(2) **第二步：创建 `docker-compose.yml` 文件**
+
+   在同一目录下创建一个名为 `docker-compose.yml` 的文件，并填入以下内容：
 ```yaml
 version: '3.8'
 
@@ -27,8 +48,8 @@ services:
     container_name: ecommerce-mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: ecommerce_db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     volumes:
       - mysql-data:/var/lib/mysql
     networks:
@@ -41,8 +62,8 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - DB_HOST=mysql
-      - DB_PASSWORD=root123
+      - DB_HOST=${DB_HOST}
+      - DB_PASSWORD=${DB_PASSWORD}
     depends_on:
       - mysql
     networks:

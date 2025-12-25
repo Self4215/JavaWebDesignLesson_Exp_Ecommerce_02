@@ -37,3 +37,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### 存储数据库密码的环境变量 ###
+.env

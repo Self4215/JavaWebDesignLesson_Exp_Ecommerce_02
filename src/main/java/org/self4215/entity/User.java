@@ -3,7 +3,7 @@ package org.self4215.entity;
 import lombok.Data;
 import lombok.ToString;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Set;
 
 @Data
